@@ -36,7 +36,7 @@
               }
             ];
           }), function(err, data) {
-            return callback(err, data);
+            return callback(null, data || {});
           });
         };
       })(this));

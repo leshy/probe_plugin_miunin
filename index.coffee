@@ -20,12 +20,8 @@ exports.plugin = backbone.Model.extend4000
             async.series helpers.dictFromArray(files,  (file) =>
                 [ file, (callback) => @runMunin file, callback ]),
                 (err,data) ->
-                    callback err,data
-
-
+                    callback null,data or {}
                 
-#        @runMunin "/etc/munin/plugins/swap", callback
-
     runMunin: (path,callback) ->
         options =
             cwd: @settings.libdir
