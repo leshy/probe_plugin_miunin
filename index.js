@@ -32,10 +32,12 @@
           return async.series(helpers.dictFromArray(files, function(file) {
             return [
               file, function(callback) {
-                return _this.runMunin(file, callback);
+                return _this.runMunin(file, function(err, data) {
+                  return callback(err, data, file);
+                });
               }
             ];
-          }), function(err, data) {
+          }), function(err, data, file) {
             console.error(file, err);
             return callback(null, data);
           });
