@@ -36,7 +36,9 @@
               }
             ];
           }), function(err, data) {
-            console.error(err);
+            if (err) {
+              console.error(err);
+            }
             return callback(null, data);
           });
         };

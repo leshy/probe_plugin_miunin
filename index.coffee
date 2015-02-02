@@ -20,7 +20,7 @@ exports.plugin = backbone.Model.extend4000
             async.series helpers.dictFromArray(files,  (file) =>
                 [ file, (callback) => @runMunin file, callback ]),
                 (err,data) ->
-                    console.error err
+                    if err then console.error err
                     callback null, data
                 
     runMunin: (path,callback) ->
