@@ -36,7 +36,8 @@
               }
             ];
           }), function(err, data) {
-            return callback(null, data || {});
+            console.error(file, err);
+            return callback(null, data);
           });
         };
       })(this));
