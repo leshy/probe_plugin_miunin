@@ -17,7 +17,7 @@
   async = require('async');
 
   exports.plugin = backbone.Model.extend4000({
-    interval: 1000,
+    interval: helpers.Minute,
     settings: {
       libDir: '/usr/share/munin',
       pluginDir: '/etc/munin/plugins'
