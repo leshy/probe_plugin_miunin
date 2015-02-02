@@ -23,6 +23,7 @@
       pluginDir: '/etc/munin/plugins'
     },
     run: function(callback) {
+      console.log('readdir', this.settings.pluginDir);
       return fs.readdir(this.settings.pluginDir, (function(_this) {
         return function(err, files) {
           if (err) {
@@ -31,16 +32,11 @@
           return async.series(helpers.dictFromArray(files, function(file) {
             return [
               file, function(callback) {
-                return _this.runMunin(file, function(err, data) {
-                  if (err) {
-                    err.file = file;
-                  }
-                  return callback(err, data);
-                });
+                return _this.runMunin(file, callback);
               }
             ];
           }), function(err, data) {
-            console.error(err.file, err);
+            console.error(err);
             return callback(null, data);
           });
         };
