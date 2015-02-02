@@ -40,4 +40,5 @@ exports.plugin = backbone.Model.extend4000
                 [name,value]
         
         child.execFile 'bash', "-c #{@settings.pluginDir + '/' + path}".split(' '), options, (err,data) ->
-            callback err, parse(data)
+            if err then console.error path, err
+            callback null, parse(data)

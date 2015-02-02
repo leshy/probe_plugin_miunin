@@ -66,7 +66,10 @@
         });
       };
       return child.execFile('bash', ("-c " + (this.settings.pluginDir + '/' + path)).split(' '), options, function(err, data) {
-        return callback(err, parse(data));
+        if (err) {
+          console.error(path, err);
+        }
+        return callback(null, parse(data));
       });
     }
   });
