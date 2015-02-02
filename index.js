@@ -33,12 +33,15 @@
             return [
               file, function(callback) {
                 return _this.runMunin(file, function(err, data) {
-                  return callback(err, data, file);
+                  if (err) {
+                    err.file = file;
+                  }
+                  return callback(err, data);
                 });
               }
             ];
-          }), function(err, data, file) {
-            console.error(file, err);
+          }), function(err, data) {
+            console.error(err.file, err);
             return callback(null, data);
           });
         };
