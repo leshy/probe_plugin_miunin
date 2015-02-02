@@ -23,7 +23,6 @@
       pluginDir: '/etc/munin/plugins'
     },
     run: function(callback) {
-      console.log('readdir', this.settings.pluginDir);
       return fs.readdir(this.settings.pluginDir, (function(_this) {
         return function(err, files) {
           if (err) {

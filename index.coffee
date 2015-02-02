@@ -14,7 +14,6 @@ exports.plugin = backbone.Model.extend4000
         pluginDir: '/etc/munin/plugins'
         
     run: (callback) ->
-        console.log 'readdir', @settings.pluginDir
         fs.readdir @settings.pluginDir, (err,files) =>
             if err then return helpers.cbc err
             async.series helpers.dictFromArray(files,  (file) =>
